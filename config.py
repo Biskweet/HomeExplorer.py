@@ -1,0 +1,2 @@
+SECRET_KEY = "rxERTX^2P~MhA=&\'p&X\x0bO6Gz.I\"*#X_p"
+MAX_CONTENT_LENGTH = 32 * 1024

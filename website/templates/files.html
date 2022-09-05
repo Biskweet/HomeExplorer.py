@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ title }}</title>
+    <!-- <link rel="stylesheet" type="text/css" media="screen" href="../static/css/files.css"> -->
+</head>
+<body>
+    <ul>
+        <!-- Displaying folders -->
+        {% for i in range(len_folders) %}
+            <li class="folder-item"><a>{{ folders[i] }}</a></li>
+        {% endfor %}
+
+        <!-- Displaying files -->
+        {% for i in range(len_files) %}
+            <li class="file-item"><a>{{ files[i] }}</a></li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
