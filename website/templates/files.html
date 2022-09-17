@@ -4,19 +4,52 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ title }}</title>
-    <!-- <link rel="stylesheet" type="text/css" media="screen" href="../static/css/files.css"> -->
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ url_for('static', filename='css/files.css') }}">
+    <script type="text/javascript">
+        if (document.location.pathname.at(-1) != '/') {
+            document.location.pathname += '/';
+        }
+    </script>
 </head>
 <body>
-    <ul>
-        <!-- Displaying folders -->
-        {% for i in range(len_folders) %}
-            <li class="folder-item"><a>{{ folders[i] }}</a></li>
-        {% endfor %}
+    <div class="main">
+        <p class="folder-item"><a href="../">../ (previous)</a></p>
+        <br>
 
-        <!-- Displaying files -->
-        {% for i in range(len_files) %}
-            <li class="file-item"><a>{{ files[i] }}</a></li>
-        {% endfor %}
-    </ul>
+        <table>
+            <thead><tr>
+                <td>Folders</td>
+            </tr></thead>
+
+            <tbody>
+                <!-- Displaying folders -->
+                {% for i in range(len_folders) %}
+                    <tr>
+                        <td class="folder-item"><a href="./{{ folders[i] }}">{{ folders[i] }}</a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <br>
+
+        <table>
+            <thead><tr>
+                <td>Files</td>
+                <td>&nbsp;&nbsp;Size</td>
+            </tr></thead>
+
+            <tbody>
+                <!-- Displaying files -->
+                {% for i in range(len_files) %}
+                    <tr>
+                        <td class="file-item"><a href="./{{ files[i][0] }}">{{ files[i][0] }}</td>
+                        <td>&nbsp;&nbsp;{{ files[i][1] }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
 </body>
 </html>

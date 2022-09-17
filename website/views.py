@@ -21,7 +21,7 @@ print("================== pass", os.environ.get("password"))
 def root():
     return redirect(url_for("login"))
 
-@app.route("/unauthorized/")
+@app.route("/unauthorized/  ")
 def unauthorized():
     return render_template("unauthorized.html", message="Sorry, an error occured.")
 
@@ -45,7 +45,7 @@ def login():
 
             sessions.append(utils.Session(session_expire, session_token))
 
-            response = redirect(url_for("files", directory="Desktop"))
+            response = redirect(url_for("files", path="Desktop"))
             response.set_cookie("session-token", session_token)
 
             return response
@@ -53,20 +53,37 @@ def login():
     return render_template("login.html")
 
 
-@app.route("/files/<path:directory>")
-def files(directory):
-    directory = directory.replace("..", ".")  # Securing the path
+@app.route("/files/")
+def files_root():
+    return redirect(url_for("files", path="Desktop"))
+
+
+@app.route("/files/<path:path>")
+def files(path):
+    path = path.replace("..", ".").replace("~", ".")  # Securing the path
+
+    if not path.startswith("Desktop"):
+        return redirect(url_for("files", path="Desktop"))
+
+    print(utils.BASE_DIR + "files/" + path)
+
+    if os.path.isfile(utils.BASE_DIR + path):
+        return send_file(utils.BASE_DIR + path, as_attachment=True)
+
+
+    elif not os.path.exists(utils.BASE_DIR + path):
+        return "doesn't exist"
 
     # token = session.get("session-token")
     # if not utils.session_is_valid(token, sessions):
     #     return render_template("unauthorized.html", message="Sorry but your session is invalid.")
 
-    files, folders = utils.get_dir_content(utils.STORAGE_DIR + directory)
+    files, folders = utils.get_dir_content(utils.BASE_DIR + path)
 
     return render_template("files.html",
-                           title=directory.strip('/').rsplit('/')[-1],
-                           len_folders=len(folders), folders=folders,
-                           len_files=len(files), files=files)
+                           path=path, title=path.strip('/').rsplit('/')[-1],
+                           len_folders=len(folders), folders=sorted(folders),
+                           len_files=len(files), files=sorted(files, key=lambda file: file[0].lower()))
 
 
 if __name__ == "__main__":

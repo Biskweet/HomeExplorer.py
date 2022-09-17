@@ -1,8 +1,17 @@
-.folder-item {
-    font-weight: bold;
-    color: blue;
+body {
+    font-family: sans-serif;
 }
 
-.file-item {
-    color: rgb(98, 98, 255);
+.main p {
+    margin: 0;
 }
+
+.main {
+    padding: 1em;
+}
+
+thead {
+    /*text-decoration: underline;*/
+    font-weight: bold;
+}
+

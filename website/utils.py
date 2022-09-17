@@ -2,8 +2,9 @@ import datetime
 import os
 from threading import Timer
 
+from humanize import filesize as hf
 
-STORAGE_DIR = "/home/gaspard/"
+BASE_DIR = "/home/gaspard/"
 
 
 class Session:
@@ -34,5 +35,5 @@ def session_is_valid(token, sessions):
 def get_dir_content(d):
     dir_content = os.listdir(d)
     folders = [item + '/' for item in dir_content if not os.path.isfile(d + "/" + item)]
-    files = [item for item in dir_content if os.path.isfile(d + "/" + item)]
+    files = [(item, hf.naturalsize(os.path.getsize(d + "/" + item))) for item in dir_content if os.path.isfile(d + "/" + item)]
     return files, folders
