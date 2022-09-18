@@ -13,11 +13,17 @@
 </head>
 <body>
     <div class="main">
-        <p class="folder-item"><a href="../">../ (previous)</a></p>
+        <table>
+            <tr>
+                <td>📁</td>
+                <td class="folder-item"><a href="../">../ (previous)</a></td>
+            </tr>
+        </table>
         <br>
 
         <table>
             <thead><tr>
+                <td></td>
                 <td>Folders</td>
             </tr></thead>
 
@@ -25,6 +31,7 @@
                 <!-- Displaying folders -->
                 {% for i in range(len_folders) %}
                     <tr>
+                        <td>📁</td>
                         <td class="folder-item"><a href="./{{ folders[i] }}">{{ folders[i] }}</a></td>
                     </tr>
                 {% endfor %}
@@ -35,6 +42,7 @@
 
         <table>
             <thead><tr>
+                <td></td>
                 <td>Files</td>
                 <td>&nbsp;&nbsp;Size</td>
             </tr></thead>
@@ -43,6 +51,7 @@
                 <!-- Displaying files -->
                 {% for i in range(len_files) %}
                     <tr>
+                        <td>{{ emoji_selector(files[i][0]) }}</td>
                         <td class="file-item"><a href="./{{ files[i][0] }}">{{ files[i][0] }}</td>
                         <td>&nbsp;&nbsp;{{ files[i][1] }}</td>
                     </tr>

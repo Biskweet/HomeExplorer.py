@@ -7,6 +7,33 @@ from humanize import filesize as hf
 BASE_DIR = "/home/gaspard/"
 
 
+viewable_formats = {
+    "avi", "mp4", "mkv", "wmv",
+    "mkv", "webm", "mov",
+
+    "tif", "tiff", "bmp", "jpg",
+    "jpeg", "gif", "png",
+
+    "txt"
+}
+
+
+emojis = {
+    "avi": "🎞️", "mp4": "🎞️",
+    "wmv": "🎞️", "mkv": "🎞️",
+    "webm": "🎞️", "mov": "🎞️",
+
+    "tif": "🖼️", "tiff": "🖼️",
+    "bmp": "🖼️", "jpg": "🖼️",
+    "jpeg": "🖼️", "gif": "🖼️",
+    "png": "🖼️", "raw": "🖼️",
+    
+    "srt": "ℹ️", "sbv": "ℹ️",
+    
+    "txt": "📝"
+}
+
+
 class Session:
     def __init__(self, expire, token):
         self.expire = expire
@@ -37,3 +64,13 @@ def get_dir_content(d):
     folders = [item + '/' for item in dir_content if not os.path.isfile(d + "/" + item)]
     files = [(item, hf.naturalsize(os.path.getsize(d + "/" + item))) for item in dir_content if os.path.isfile(d + "/" + item)]
     return files, folders
+
+
+def emoji_selector(filename):
+    print(filename)
+    _, extension = os.path.splitext(filename)
+
+    # Removing leading dot
+    extension = extension[1:]
+
+    return emojis.get(extension.lower(), "📄")

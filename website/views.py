@@ -3,7 +3,7 @@ import os
 import random
 import string
 
-from flask import Flask, render_template, redirect, request, send_file, session, url_for
+from flask import Flask, render_template, redirect, request, send_file, session, url_for, abort
 import dotenv
 
 from website import utils
@@ -75,11 +75,18 @@ def files(path):
 
     print(utils.BASE_DIR + "files/" + path)
 
+    # If the requested path is a file
     if os.path.isfile(utils.BASE_DIR + path):
+        # Send the file with preview mode if it is of previewable type
+        if os.path.splitext(utils.BASE_DIR + path)[1][1:] in utils.viewable_formats:
+            return send_file(utils.BASE_DIR + path, as_attachment=False)
+
+        # File isn't previewable, send as attachment download only
         return send_file(utils.BASE_DIR + path, as_attachment=True)
 
+    # If the path provided doesn't exist
     elif not os.path.exists(utils.BASE_DIR + path):
-        return "doesn't exist"
+        return abort(404)  # Show "Not found" page
 
 
     files, folders = utils.get_dir_content(utils.BASE_DIR + path)
@@ -87,7 +94,14 @@ def files(path):
     return render_template("files.html",
                            path=path, title=path.strip('/').rsplit('/')[-1],
                            len_folders=len(folders), folders=sorted(folders),
-                           len_files=len(files), files=sorted(files, key=lambda file: file[0].lower()))
+                           len_files=len(files), files=sorted(files, key=lambda file: file[0].lower()),
+                           emoji_selector=utils.emoji_selector
+                           )
+
+
+@app.errorhandler(404)
+def notfound(_):
+    return render_template("notfound.html")
 
 
 if __name__ == "__main__":

@@ -4,12 +4,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Authentication page</title>
-    <link rel='stylesheet' type='text/css' media='screen' href='../static/css/index.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href="{{ url_for('static', filename='css/login.css') }}">
 </head>
 <body>
     <div class="main">
         <form action="/login/" method="POST">
-            <!-- <input hidden name="csrf-token" value="{{ crsf_token }}"> -->
             <input type="password" name="password" placeholder="Enter password">
             <input type="submit" value="Access storage">
         </form>
