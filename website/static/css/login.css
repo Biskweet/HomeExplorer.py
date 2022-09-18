@@ -1,9 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
 body {
     font-family: "Open Sans", sans-serif;
     user-select: none;
+}
+
+
+h1.title {
+    font-size: 3vw;
+    margin: 0;
+    margin-bottom: 0.5em;
+    font-family: "Robotof", "Open Sans", sans-serif;
+    font-weight: lighter;
 }
 
 
@@ -16,6 +26,19 @@ body {
     margin: auto;
 }
 
+
 ::placeholder {
     font-style: italic;
+}
+
+input {
+    font-family: "Roboto";
+    /*font-weight: lighter;*/
+}
+
+input[type=password], input[type=password]:focus {
+    border: 0;
+    outline: 0;
+    margin-right: 0.5em;
+    border-bottom: 1px solid grey;
 }

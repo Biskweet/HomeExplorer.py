@@ -1,5 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+
 body {
-    font-family: sans-serif;
+    font-family: "Open Sans", sans-serif;
+}
+
+thead {
+    font-weight: lighter;
 }
 
 .main p {
@@ -10,8 +19,8 @@ body {
     padding: 1em;
 }
 
-thead {
-    /*text-decoration: underline;*/
+.title {
+    text-decoration: underline;
     font-weight: bold;
 }
 
