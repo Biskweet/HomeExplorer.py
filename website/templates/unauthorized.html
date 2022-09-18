@@ -4,16 +4,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Unauthorized</title>
-    <script type="text/javascript">
-        function resetSession() {
-            document.cookie = '';
-            document.location='/login/';
-        }
-    </script>
 </head>
 <body>
     <h3>Unauthorized</h3>
     <p>{{ message }}</p>
-    <a href="/login/">Go back to the login page</a>
+    <a href="/login/"><button>Go back to the login page</button></a>
 </body>
 </html>
