@@ -14,6 +14,8 @@ viewable_formats = {
     "tif", "tiff", "bmp", "jpg",
     "jpeg", "gif", "png",
 
+    "pdf",
+
     "txt"
 }
 
@@ -30,6 +32,8 @@ emojis = {
     
     "srt": "ℹ️", "sbv": "ℹ️",
     
+    "pdf": "📕",
+
     "txt": "📝"
 }
 

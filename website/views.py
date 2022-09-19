@@ -24,6 +24,7 @@ print("================== pass", os.environ.get("password"))
 def root():
     return redirect(url_for("login"))
 
+
 @app.route("/unauthorized/")
 def unauthorized():
     return render_template("unauthorized.html", message="Sorry, an error occured.")
@@ -97,6 +98,15 @@ def files(path):
                            len_files=len(files), files=sorted(files, key=lambda file: file[0].lower()),
                            emoji_selector=utils.emoji_selector
                            )
+
+
+@app.route("/resetcookie/")
+def resetcookie():
+    for i, s in enumerate(sessions):
+        if s.token == session.get("session-token"):
+            del sessions[i]
+
+    return redirect(url_for("login"))
 
 
 @app.errorhandler(404)

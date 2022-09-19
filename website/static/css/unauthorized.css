@@ -18,13 +18,13 @@ body {
 }
 
 h1#emoji {
-    font-size: 75px;
+    font-size: 60px;
     margin: 0;
 }
 
 
-.title {
-    font-size: 5vw;
+h1.title {
+    font-size: 4vw;
     margin: 0;
     font-family: "EB Garamond", "Open Sans", sans-serif;
     font-weight: lighter;
@@ -33,4 +33,9 @@ h1#emoji {
 
 button {
     margin-top: 2em;
+    font-family: "Open Sans", sans-serif;
+    background: white;
+    border: 1px solid black;
+    border-radius: 5px;
+    cursor: pointer;
 }

@@ -24,3 +24,16 @@ thead {
     font-weight: bold;
 }
 
+.logoutbutton {
+    position: absolute;
+    display: inline;
+    top: 2%;
+    right: 2%;
+}
+
+.logoutbutton button {
+    background: white;
+    border: 1px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+}
