@@ -17,8 +17,6 @@ dotenv.load_dotenv()
 
 utils.autodelete_sessions(sessions)
 
-print("================== pass", os.environ.get("password"))
-
 
 @app.route("/")
 def root():
