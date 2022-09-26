@@ -16,14 +16,14 @@ body {
     margin: auto;
 }
 
-h1#emoji {
-    font-size: 100px;
+h1.emoji {
+    font-size: 60px;
     margin: 0;
 }
 
 
 .title {
-    font-size: 5vw;
+    font-size: 4vw;
     margin: 0;
     font-family: "EB Garamond", "Open Sans", sans-serif;
     font-weight: lighter;

@@ -17,7 +17,7 @@ body {
     margin: auto;
 }
 
-h1#emoji {
+h1e.emoji {
     font-size: 60px;
     margin: 0;
 }
