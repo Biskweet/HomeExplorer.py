@@ -21,7 +21,8 @@
         </table>
         <br>
 
-        <table>
+	{% if len_folders > 0 %}
+	<table>
             <thead><tr>
                 <td></td>
                 <td><span class="title">Folders</span></td>
@@ -38,8 +39,10 @@
             </tbody>
         </table>
 
-        <br>
+	<br>
+	{% endif %}
 
+	{% if len_files > 0 %}
         <table>
             <thead><tr>
                 <td></td>
@@ -58,6 +61,8 @@
                 {% endfor %}
             </tbody>
         </table>
+	{% endif %}
+
     </div>
 
     <div class="logoutbutton">

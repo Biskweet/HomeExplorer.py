@@ -35,7 +35,7 @@ def unauthorized():
 
 @app.route("/login/", methods=["GET", "POST"])
 def login():
-    if utils.session_is_valid(session.get("session-token"), sessions):
+    if utils.session_is_valid(session.get("session"), sessions):
         return redirect(url_for("files", path="storage"))
 
     if request.method == "POST":
@@ -53,7 +53,7 @@ def login():
             sessions.append(utils.Session(session_expire, session_token))
 
             # Writing the session token to the user's session storage
-            session["session-token"] = session_token
+            session["session"] = session_token
 
             response = redirect(url_for("files", path="storage"))
 
@@ -69,7 +69,7 @@ def files_root():
 
 @app.route("/files/<path:path>")
 def files(path):
-    if not utils.session_is_valid(session.get("session-token"), sessions):
+    if not utils.session_is_valid(session.get("session"), sessions):
         return render_template("unauthorized.html", message="Sorry but your session is invalid.")
 
     path = path.replace("..", ".").replace("~", ".")  # Securing the path
@@ -105,7 +105,7 @@ def files(path):
 @app.route("/resetcookie/")
 def resetcookie():
     for i, s in enumerate(sessions):
-        if s.token == session.get("session-token"):
+        if s.token == session.get("session"):
             del sessions[i]
 
     return redirect(url_for("login"))
