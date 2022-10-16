@@ -31,7 +31,7 @@ def unauthorized():
 @app.route("/login/", methods=["GET", "POST"])
 def login():
     if utils.session_is_valid(session.get("session-token"), sessions):
-        return redirect(url_for("files", path="Desktop"))
+        return redirect(url_for("files", path=""))
 
     if request.method == "POST":
         password = request.form.get("password")
@@ -50,7 +50,7 @@ def login():
             # Writing the session token to the user's session storage
             session["session-token"] = session_token
 
-            response = redirect(url_for("files", path="Desktop"))
+            response = redirect(url_for("files", path=""))
 
             return response
 
@@ -59,7 +59,7 @@ def login():
 
 @app.route("/files/")
 def files_root():
-    return redirect(url_for("files", path="Desktop"))
+    return redirect(url_for("files", path=""))
 
 
 @app.route("/files/<path:path>")
@@ -69,8 +69,8 @@ def files(path):
 
     path = path.replace("..", ".").replace("~", ".")  # Securing the path
 
-    if not path.startswith("Desktop"):
-        return redirect(url_for("files", path="Desktop"))
+    if not path.startswith(""):
+        return redirect(url_for("files", path=""))
 
     print(utils.BASE_DIR + "files/" + path)
 

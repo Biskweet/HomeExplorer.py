@@ -4,7 +4,7 @@ from threading import Timer
 
 from humanize import filesize as hf
 
-BASE_DIR = "/home/gaspard/"
+BASE_DIR = "/home/public/storage/"
 
 
 viewable_formats = {
