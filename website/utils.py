@@ -4,8 +4,6 @@ from threading import Timer
 
 from humanize import filesize as hf
 
-BASE_DIR = "/home/public/storage/"
-
 
 viewable_formats = {
     "avi", "mp4", "mkv", "wmv",
