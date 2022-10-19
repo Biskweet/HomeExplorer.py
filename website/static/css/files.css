@@ -25,10 +25,10 @@ thead {
 }
 
 .logoutbutton {
-    position: absolute;
-    display: inline;
+    position: fixed;
     top: 2%;
     right: 2%;
+    z-index: 1
 }
 
 .logoutbutton button {
@@ -37,3 +37,14 @@ thead {
     border-radius: 5px;
     cursor: pointer;
 }
+
+
+.icon img { 
+    position: fixed;
+    bottom: 1%;
+    right: 1%;
+    width: 35px;
+    cursor: pointer;
+    z-index: 1;
+}
+

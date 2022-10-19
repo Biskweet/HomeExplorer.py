@@ -42,6 +42,7 @@ input[type=password], input[type=password]:focus {
     margin-right: 0.5em;
     border-bottom: 1px solid grey;
     padding-bottom: 2px;
+    background: transparent;
 }
 
 
@@ -53,9 +54,11 @@ input[type=submit] {
 }
 
 
-footer {
-    position: absolute;
-    display: inline;
+.icon img {
+    position: fixed;
     bottom: 1%;
-    left: 1%;
+    right: 1%;
+    width: 35px;
+    cursor: pointer;
+    z-index: 1;
 }

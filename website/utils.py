@@ -7,7 +7,7 @@ from humanize import filesize as hf
 
 viewable_formats = {
     "avi", "mp4", "mkv", "wmv",
-    "mkv", "webm", "mov",
+    "m4v", "webm", "mov", "mpg",
 
     "tif", "tiff", "bmp", "jpg",
     "jpeg", "gif", "png",
@@ -22,6 +22,7 @@ emojis = {
     "avi": "🎞️", "mp4": "🎞️",
     "wmv": "🎞️", "mkv": "🎞️",
     "webm": "🎞️", "mov": "🎞️",
+    "mpg": "🎞️","m4v": "🎞️",
 
     "tif": "🖼️", "tiff": "🖼️",
     "bmp": "🖼️", "jpg": "🖼️",
@@ -69,10 +70,10 @@ def get_dir_content(d):
 
 
 def emoji_selector(filename):
-    print(filename)
     _, extension = os.path.splitext(filename)
 
     # Removing leading dot
     extension = extension[1:]
 
     return emojis.get(extension.lower(), "📄")
+
