@@ -28,3 +28,14 @@ h1.emoji {
     font-family: "EB Garamond", "Open Sans", sans-serif;
     font-weight: lighter;
 }
+
+
+button {
+    margin-top: 2em;
+    font-family: "Open Sans", sans-serif;
+    background: white;
+    border: 1px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+}
+

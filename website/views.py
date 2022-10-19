@@ -42,7 +42,7 @@ def login():
         password = request.form.get("password")
 
         if password != os.environ.get("PASSWORD"):
-            return render_template("unauthorized.html", message="Sorry, but the password is incorrect.")
+            return render_template("unauthorized.html", message="Sorry, but the password is incorrect.\nPlease try again.")
 
         else:
             session_token = ''.join([random.choice(string.printable) for _ in range(32)])
@@ -70,7 +70,7 @@ def files_root():
 @app.route("/files/<path:path>")
 def files(path):
     if not utils.session_is_valid(session.get("session"), sessions):
-        return render_template("unauthorized.html", message="Sorry but your session is invalid.")
+        return render_template("unauthorized.html", message="Sorry but your session is invalid or has probably expired. Please log in again.")
 
     path = path.replace("..", ".").replace("~", ".")  # Securing the path
 
