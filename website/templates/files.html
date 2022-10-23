@@ -13,6 +13,7 @@
 </head>
 <body>
     <div class="main">
+
         <table>
             <tr>
                 <td>📁</td>
@@ -21,47 +22,47 @@
         </table>
         <br>
 
-	{% if len_folders > 0 %}
-	<table>
-            <thead><tr>
-                <td></td>
-                <td><span class="title">Folders</span></td>
-            </tr></thead>
-
-            <tbody>
-                <!-- Displaying folders -->
-                {% for i in range(len_folders) %}
-                    <tr>
-                        <td>📁</td>
-                        <td class="folder-item"><a href="./{{ folders[i] }}">{{ folders[i] }}</a></td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-
-	<br>
-	{% endif %}
-
-	{% if len_files > 0 %}
+        {% if len_folders > 0 %}
         <table>
-            <thead><tr>
-                <td></td>
-                <td><span class="title">Files</span></td>
-                <td>&nbsp;&nbsp;<span class="title">Size</span></td>
-            </tr></thead>
+                <thead><tr>
+                    <td></td>
+                    <td><span class="title">Folders</span></td>
+                </tr></thead>
 
-            <tbody>
-                <!-- Displaying files -->
-                {% for i in range(len_files) %}
-                    <tr>
-                        <td>{{ emoji_selector(files[i][0]) }}</td>
-                        <td class="file-item"><a href="./{{ files[i][0] }}">{{ files[i][0] }}</td>
-                        <td>&nbsp;&nbsp;{{ files[i][1] }}</td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-	{% endif %}
+                <tbody>
+                    <!-- Displaying folders -->
+                    {% for i in range(len_folders) %}
+                        <tr>
+                            <td>📁</td>
+                            <td class="folder-item"><a href="./{{ folders[i] }}">{{ folders[i] }}</a></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+        <br>
+        {% endif %}
+
+        {% if len_files > 0 %}
+            <table>
+                <thead><tr>
+                    <td></td>
+                    <td><span class="title">Files</span></td>
+                    <td>&nbsp;&nbsp;<span class="title">Size</span></td>
+                </tr></thead>
+
+                <tbody>
+                    <!-- Displaying files -->
+                    {% for i in range(len_files) %}
+                        <tr>
+                            <td>{{ emoji_selector(files[i][0]) }}</td>
+                            <td class="file-item"><a href="./{{ files[i][0] }}">{{ files[i][0] }}</td>
+                                <td>&nbsp;&nbsp;{{ files[i][1] }}</td>
+                            </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
 
     </div>
 
@@ -71,7 +72,26 @@
         </a>
     </div>
 
+    <div class="search">
+        <form action="/search">
+
+            <div id="searchbar">
+                <input type="text" id="searchbar_text" placeholder="Search for a file">
+
+                <label for="searchbar_submit">
+                    <img src="{{ url_for('static', filename='img/magnifier.png') }}">
+                </label>
+            </div>
+
+
+            <input type="submit" id="searchbar_submit" hidden>
+
+        </form>
+    </div>
+
     <footer>
+
+
         <div class="icon" id="github">
             <a href="https://github.com/Biskweet/HomeExplorer/">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg">
@@ -80,4 +100,3 @@
     </footer>
 </body>
 </html>
-

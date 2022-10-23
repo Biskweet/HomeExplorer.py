@@ -3,6 +3,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
 
+@keyframes lighten {
+    0% {
+        color: #757575;
+    }
+
+    100% {
+        color: #dadada;
+    }
+}
+
+
 body {
     font-family: "Open Sans", sans-serif;
 }
@@ -24,27 +35,76 @@ thead {
     font-weight: bold;
 }
 
+#searchbar_text {
+    cursor: text;
+    border: none;
+    outline: none;
+    font-size: medium;
+}
+
+::placeholder {
+    font-style: italic;
+}
+
+#searchbar_text:focus::placeholder {
+    transition: all 0.3s ease-out;
+    color: #aeaeae;
+}
+
+#searchbar_text:not(:focus)::placeholder {
+    transition: all 0.3s ease-out;
+    color: #757575;
+}
+
+#searchbar:focus-within {
+    transition: all 0.1s ease-out;
+    padding-bottom: 4px;
+}
+
+#searchbar:not(:focus-within) {
+    transition: all 0.  1s ease-out;
+    padding-bottom: 3px;
+}
+
+#searchbar {
+    position: fixed;
+    z-index: 1;
+    top: 25px;
+    right: 25px;
+    height: 25px;
+    width: 250px;
+    border-bottom: 1px solid;
+    padding: 3px;
+}
+
+.search img {
+    position: fixed;
+    z-index: 1;
+    right: 25px;
+    top: 25px;
+    width: 25px;
+}
+
 .logoutbutton {
     position: fixed;
-    top: 2%;
-    right: 2%;
-    z-index: 1
+    top: 65px;
+    right: 25px;
+    z-index: 1;
 }
 
 .logoutbutton button {
+    font-size: medium;
     background: white;
     border: 1px solid black;
     border-radius: 5px;
     cursor: pointer;
 }
 
-
-.icon img { 
+.icon img {
     position: fixed;
-    bottom: 1%;
-    right: 1%;
+    bottom: 10px;
+    right: 15px;
     width: 35px;
     cursor: pointer;
     z-index: 1;
 }
-
