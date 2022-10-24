@@ -22,7 +22,7 @@
         </table>
         <br>
 
-        {% if len_folders > 0 %}
+        {% if folders|length > 0 %}
         <table>
                 <thead><tr>
                     <td></td>
@@ -31,10 +31,10 @@
 
                 <tbody>
                     <!-- Displaying folders -->
-                    {% for i in range(len_folders) %}
+                    {% for folder in folders %}
                         <tr>
                             <td>📁</td>
-                            <td class="folder-item"><a href="./{{ folders[i] }}">{{ folders[i] }}</a></td>
+                            <td class="folder-item"><a href="./{{ folders }}">{{ folder }}</a></td>
                         </tr>
                     {% endfor %}
                 </tbody>
@@ -43,7 +43,7 @@
         <br>
         {% endif %}
 
-        {% if len_files > 0 %}
+        {% if files|length > 0 %}
             <table>
                 <thead><tr>
                     <td></td>
@@ -53,11 +53,11 @@
 
                 <tbody>
                     <!-- Displaying files -->
-                    {% for i in range(len_files) %}
+                    {% for file in files %}
                         <tr>
-                            <td>{{ emoji_selector(files[i][0]) }}</td>
-                            <td class="file-item"><a href="./{{ files[i][0] }}">{{ files[i][0] }}</td>
-                                <td>&nbsp;&nbsp;{{ files[i][1] }}</td>
+                            <td>{{ emoji_selector(file[0]) }}</td>
+                            <td class="file-item"><a href="./{{ file[0] }}">{{ file[0] }}</td>
+                                <td>&nbsp;&nbsp;{{ file[1] }}</td>
                             </tr>
                     {% endfor %}
                 </tbody>
@@ -73,10 +73,10 @@
     </div>
 
     <div class="search">
-        <form action="/search">
+        <form action="/search" method="POST">
 
             <div id="searchbar">
-                <input type="text" id="searchbar_text" placeholder="Search for a file">
+                <input type="text" id="searchbar_text" placeholder="Search for a file" name="filename" value="{{ filename }}">
 
                 <label for="searchbar_submit">
                     <img src="{{ url_for('static', filename='img/magnifier.png') }}">

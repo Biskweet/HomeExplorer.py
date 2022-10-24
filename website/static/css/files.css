@@ -40,6 +40,7 @@ thead {
     border: none;
     outline: none;
     font-size: medium;
+
 }
 
 ::placeholder {
@@ -83,6 +84,7 @@ thead {
     right: 25px;
     top: 25px;
     width: 25px;
+    cursor: pointer;
 }
 
 .logoutbutton {

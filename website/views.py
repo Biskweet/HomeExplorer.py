@@ -94,12 +94,36 @@ def files(path):
 
     files, folders = utils.get_dir_content(BASE_DIR + path)
 
-    return render_template("files.html",
-                           path=path, title=path.strip('/').rsplit('/')[-1],
-                           len_folders=len(folders), folders=sorted(folders),
-                           len_files=len(files), files=sorted(files, key=lambda file: file[0].lower()),
-                           emoji_selector=utils.emoji_selector
-                           )
+    return render_template(
+        "files.html",
+        path=path,
+        title=path.strip('/').rsplit('/')[-1],
+        folders=sorted(folders),
+        files=sorted(files, key=lambda file: file[0].lower()),
+        emoji_selector=utils.emoji_selector
+    )
+
+
+@app.route("/search/", methods=["POST"])
+def search():
+    if request.method == "POST":
+        filename = str(request.form.get("filename"))
+        filename_low = filename.lower()
+
+        print(filename)
+
+        files = utils.search_filename(str(BASE_DIR) + "storage/", filename_low)
+
+        return render_template(
+            "files.html",
+            filename=filename,
+            title=f'Search "{filename}"',
+            files=sorted(files, key=lambda file: file[0].lower()),
+            emoji_selector=utils.emoji_selector
+        )
+
+    return redirect(url_for("login"))
+
 
 
 @app.route("/resetcookie/")

@@ -28,9 +28,9 @@ emojis = {
     "bmp": "🖼️", "jpg": "🖼️",
     "jpeg": "🖼️", "gif": "🖼️",
     "png": "🖼️", "raw": "🖼️",
-    
+
     "srt": "ℹ️", "sbv": "ℹ️",
-    
+
     "pdf": "📕",
 
     "txt": "📝"
@@ -77,3 +77,16 @@ def emoji_selector(filename):
 
     return emojis.get(extension.lower(), "📄")
 
+
+def search_filename(d, name):
+    dir_content = os.listdir(d)
+
+    folders = [item + '/' for item in dir_content if not os.path.isfile(d + "/" + item)]
+
+    files = []
+    for item in dir_content:
+        if os.path.isfile(d + '/' + item) and name in item.lower().replace("_", " "):
+            item_size = hf.naturalsize(os.path.getsize(d + "/" + item))
+            files.append((item, item_size))
+
+    return files + sum([search_filename(os.path.join(d, folder), name) for folder in folders], start=[])
