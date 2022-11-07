@@ -12,6 +12,9 @@ viewable_formats = {
     "tif", "tiff", "bmp", "jpg",
     "jpeg", "gif", "png",
 
+    "wav", "mp3", "wma", "ogg",
+    "pcm", "aiff", "aac", "flac",
+
     "pdf",
 
     "txt"
@@ -30,6 +33,11 @@ emojis = {
     "png": "🖼️", "raw": "🖼️",
 
     "srt": "ℹ️", "sbv": "ℹ️",
+
+    "wav": "🎵", "mp3": "🎵",
+    "wma": "🎵", "ogg": "🎵",
+    "pcm": "🎵", "aiff": "🎵",
+    "aac": "🎵", "flac": "🎵",
 
     "pdf": "📕",
 
