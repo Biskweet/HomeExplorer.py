@@ -97,7 +97,7 @@ def files(path):
     return render_template(
         "files.html",
         path=path,
-        title=path.strip('/').rsplit('/')[-1],
+        title=f'Browsing "{path.strip("/").rsplit("/")[-1]}"',
         folders=sorted(folders),
         files=sorted(files, key=lambda file: file[0].lower()),
         emoji_selector=utils.emoji_selector
