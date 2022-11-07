@@ -17,31 +17,10 @@
         <table>
             <tr>
                 <td>📁</td>
-                <td class="folder-item"><a href="../">../ (previous)</a></td>
+                <td class="folder-item"><a href="../">Go back to the root directory</a></td>
             </tr>
         </table>
         <br>
-
-        {% if folders|length > 0 %}
-        <table>
-                <thead><tr>
-                    <td></td>
-                    <td><span class="title">Folders</span></td>
-                </tr></thead>
-
-                <tbody>
-                    <!-- Displaying folders -->
-                    {% for folder in folders %}
-                        <tr>
-                            <td>📁</td>
-                            <td class="folder-item"><a href="./{{ folder }}">{{ folder }}</a></td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-
-        <br>
-        {% endif %}
 
         {% if files|length > 0 %}
             <table>
@@ -55,9 +34,9 @@
                     <!-- Displaying files -->
                     {% for file in files %}
                         <tr>
-                            <td>{{ emoji_selector(file[0]) }}</td>
-                            <td class="file-item"><a href="./{{ file[0] }}">{{ file[0] }}</td>
-                                <td>&nbsp;&nbsp;{{ file[1] }}</td>
+                            <td>{{ emoji_selector(file[1]) }}</td>
+                            <td class="file-item"><a href="./{{ file[0] }}">{{ file[1] }}</td>
+                                <td>&nbsp;&nbsp;{{ file[2] }}</td>
                             </tr>
                     {% endfor %}
                 </tbody>

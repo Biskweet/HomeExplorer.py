@@ -110,12 +110,10 @@ def search():
         filename = str(request.form.get("filename"))
         filename_low = filename.lower()
 
-        print(filename)
-
         files = utils.search_filename(str(BASE_DIR) + "storage/", filename_low)
 
         return render_template(
-            "files.html",
+            "search.html",
             filename=filename,
             title=f'Search "{filename}"',
             files=sorted(files, key=lambda file: file[0].lower()),

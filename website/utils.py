@@ -81,12 +81,12 @@ def emoji_selector(filename):
 def search_filename(d, name):
     dir_content = os.listdir(d)
 
-    folders = [item + '/' for item in dir_content if not os.path.isfile(d + "/" + item)]
+    folders = [item + '/' for item in dir_content if not os.path.isfile(os.path.join(d, item))]
 
     files = []
     for item in dir_content:
-        if os.path.isfile(d + '/' + item) and name in item.lower().replace("_", " "):
-            item_size = hf.naturalsize(os.path.getsize(d + "/" + item))
-            files.append((item, item_size))
+        if os.path.isfile(d + item) and name in item.lower().replace("_", " "):
+            item_size = hf.naturalsize(os.path.getsize(d + item))
+            files.append((d + item, item, item_size))
 
-    return files + sum([search_filename(os.path.join(d, folder), name) for folder in folders], start=[])
+    return files + sum([search_filename(d + folder, name) for folder in folders], start=[])
