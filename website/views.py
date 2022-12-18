@@ -145,7 +145,7 @@ def resetcookie():
 
 @app.errorhandler(404)
 def notfound(_):
-    return render_template("notfound.html")
+    return render_template("notfound.html"), 404
 
 
 if __name__ == "__main__":
