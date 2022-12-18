@@ -7,9 +7,9 @@
     <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
     
     <link rel="stylesheet" type="text/css" media="screen" href="{{ url_for('static', filename='css/files.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/_log_out_button.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/_footer.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/_search_bar.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/log_out_button.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/footer.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/search_bar.css') }}">
     
     <script type="text/javascript">
         if (document.location.pathname.at(-1) != '/') {
@@ -51,10 +51,10 @@
 
     </div>
 
-    {% include "_log_out_button.html" %}
+    {% include "log_out_button.html" %}
 
-    {% include "_search_bar.html" %}
+    {% include "search_bar.html" %}
 
-    {% include "_footer.html" %}
+    {% include "footer.html" %}
 </body>
 </html>
