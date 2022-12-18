@@ -35,7 +35,7 @@ def unauthorized():
 
 @app.route("/login/", methods=["GET", "POST"])
 def login():
-    if utils.session_is_valid(session.get("session"), sessions):
+    if utils.session_is_valid(str(session.get("session")), sessions):
         return redirect(url_for("files", path="storage"))
 
     if request.method == "POST":
@@ -47,7 +47,7 @@ def login():
         else:
             session_token = ''.join([random.choice(string.printable) for _ in range(32)])
 
-            # 1h session duration
+            # 4h session duration
             session_expire = datetime.datetime.now() + datetime.timedelta(hours=4)
 
             sessions.append(utils.Session(session_expire, session_token))
@@ -69,10 +69,10 @@ def files_root():
 
 @app.route("/files/<path:path>")
 def files(path):
-    if not utils.session_is_valid(session.get("session"), sessions):
+    if not utils.session_is_valid(str(session.get("session")), sessions):
         return render_template("unauthorized.html", message="Sorry but your session is invalid or has probably expired. Please log in again.")
 
-    path = path.replace("..", ".").replace("~", ".")  # Securing the path
+    path = path.replace('..', '.').replace('~', '.')  # Securing path
 
     if not path.startswith("storage"):
         return redirect(url_for("files", path="storage"))
@@ -99,7 +99,7 @@ def files(path):
         path=path,
         title=f'Browsing "{path.strip("/").rsplit("/")[-1]}"',
         folders=sorted(folders),
-        files=sorted(files, key=lambda file: file[0].lower()),
+        files=sorted(files, key=lambda file: file.name.lower()),
         emoji_selector=utils.emoji_selector
     )
 
@@ -126,7 +126,7 @@ def search():
             "search.html",
             filename=filename,
             title=f'Search "{filename}"',
-            files=sorted(files, key=lambda file: file[0].lower()),
+            files=sorted(files, key=lambda file: file.name.lower()),
             emoji_selector=utils.emoji_selector
         )
 

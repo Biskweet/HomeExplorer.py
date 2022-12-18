@@ -1,0 +1,14 @@
+.logoutbutton {
+    position: fixed;
+    top: 65px;
+    right: 25px;
+    z-index: 1;
+}
+
+.logoutbutton button {
+    font-size: medium;
+    background: white;
+    border: 1px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+}

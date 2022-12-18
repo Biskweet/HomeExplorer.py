@@ -1,0 +1,16 @@
+<div class="search">
+    <form action="/search" method="POST">
+
+        <div id="searchbar">
+            <input type="text" id="searchbar_text" placeholder="Search for a file" name="filename" value="{{ filename }}">
+
+            <label for="searchbar_submit">
+                <img src="{{ url_for('static', filename='img/magnifier.png') }}">
+            </label>
+        </div>
+
+
+        <input type="submit" id="searchbar_submit" hidden>
+
+    </form>
+</div>

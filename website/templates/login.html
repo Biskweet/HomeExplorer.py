@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Authentication page</title>
     <link rel='stylesheet' type='text/css' media='screen' href="{{ url_for('static', filename='css/login.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/_footer.css') }}">
     <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
 </head>
 <body>
@@ -15,12 +16,7 @@
             <input type="submit" value="Access storage 👉">
         </form>
     </div>
-    <footer>
-        <div class="icon" id="github">
-            <a href="https://github.com/Biskweet/HomeExplorer/">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg">
-            </a>
-        </div>
-    </footer>
+
+    {% include "_footer.html" %}
 </body>
 </html>

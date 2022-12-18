@@ -4,17 +4,20 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>404 - Not found</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/notfound.css') }}">
     <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/notfound.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/_footer.css') }}">
 </head>
 <body>
     <div class="main">
         <h1 class="emoji">❓</h1>
         <h1 class="title">Error 404</h1>
         <p>Sorry, the content you requested was not found.</p>
-	<a href="/login/">
-		<button>Go to the login page</button>
-	</a>
+        <a href="/login/">
+            <button>Go to the login page</button>
+        </a>
     </div>
+
+    {% include "_footer.html" %}
 </body>
 </html>

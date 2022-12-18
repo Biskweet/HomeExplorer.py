@@ -4,8 +4,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ title }}</title>
-    <link rel="stylesheet" type="text/css" media="screen" href="{{ url_for('static', filename='css/files.css') }}">
     <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ url_for('static', filename='css/files.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/_log_out_button.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/_footer.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/_search_bar.css') }}">
+    
     <script type="text/javascript">
         if (document.location.pathname.at(-1) != '/') {
             document.location.pathname += '/';
@@ -34,7 +39,7 @@
                     <!-- Displaying folders -->
                     {% for folder in folders %}
                         <tr>
-                            <td>📁</td>
+                            <td>📂</td>
                             <td class="folder-item"><a href="./{{ folder }}">{{ folder }}</a></td>
                         </tr>
                     {% endfor %}
@@ -56,10 +61,10 @@
                     <!-- Displaying files -->
                     {% for file in files %}
                         <tr>
-                            <td>{{ emoji_selector(file[0]) }}</td>
-                            <td class="file-item"><a href="./{{ file[0] }}">{{ file[0] }}</td>
-                                <td>&nbsp;&nbsp;{{ file[1] }}</td>
-                            </tr>
+                            <td>{{ emoji_selector(file.name) }}</td>
+                            <td class="file-item"><a href="./{{ file.path }}">{{ file.name }}</td>
+                            <td>&nbsp;&nbsp;{{ file.size }}</td>
+                        </tr>
                     {% endfor %}
                 </tbody>
             </table>
@@ -67,37 +72,10 @@
 
     </div>
 
-    <div class="logoutbutton">
-        <a href="/resetcookie/">
-            <button>Log out</button>
-        </a>
-    </div>
+    {% include "_log_out_button.html" %}
 
-    <div class="search">
-        <form action="/search" method="POST">
+    {% include "_search_bar.html" %}
 
-            <div id="searchbar">
-                <input type="text" id="searchbar_text" placeholder="Search for a file" name="filename" value="{{ filename }}">
-
-                <label for="searchbar_submit">
-                    <img src="{{ url_for('static', filename='img/magnifier.png') }}">
-                </label>
-            </div>
-
-
-            <input type="submit" id="searchbar_submit" hidden>
-
-        </form>
-    </div>
-
-    <footer>
-
-
-        <div class="icon" id="github">
-            <a href="https://github.com/Biskweet/HomeExplorer/">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg">
-            </a>
-        </div>
-    </footer>
+    {% include "_footer.html" %}
 </body>
 </html>

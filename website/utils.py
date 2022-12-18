@@ -54,7 +54,17 @@ class Session:
         self.token = token
 
 
-def autodelete_sessions(sessions):
+class BetterFile(dict):
+    def __init__(self, *args):
+        self.update(*args)
+        self.__dict__.update(*args)
+
+        self.name : str
+        self.size : str
+        self.path : str
+
+
+def autodelete_sessions(sessions: list[Session]):
     Timer(1800, autodelete_sessions, args=(sessions,)).start()
 
     now = datetime.datetime.now()
@@ -64,7 +74,7 @@ def autodelete_sessions(sessions):
             del sessions[i]
 
 
-def session_is_valid(token, sessions):
+def session_is_valid(token: str, sessions: list[Session]) -> bool:
     if not token: return False
 
     for session in sessions:
@@ -73,23 +83,28 @@ def session_is_valid(token, sessions):
     return False
 
 
-def get_dir_content(d):
+def get_dir_content(d: str) -> tuple[list[BetterFile], list[str]]:
     dir_content = os.listdir(d)
     folders = [item + '/' for item in dir_content if not os.path.isfile(d + "/" + item)]
-    files = [(item, hf.naturalsize(os.path.getsize(d + "/" + item))) for item in dir_content if os.path.isfile(d + "/" + item)]
+    files = [
+        BetterFile({ "name": item, "size": hf.naturalsize(os.path.getsize(d + "/" + item)) })
+        for item in dir_content
+        if os.path.isfile(d + "/" + item)
+    ]
+
     return files, folders
 
 
-def emoji_selector(filename):
+def emoji_selector(filename: str) -> str:
     _, extension = os.path.splitext(filename)
 
     # Removing leading dot
     extension = extension[1:]
 
-    return emojis.get(extension.lower(), "📄")
+    return emojis.get(extension.lower(), '📄')
 
 
-def search_filename(d, name):
+def search_filename(d: str, name: str) -> list[BetterFile]:
     dir_content = os.listdir(d)
 
     folders = [item + '/' for item in dir_content if not os.path.isfile(os.path.join(d, item))]
@@ -98,6 +113,6 @@ def search_filename(d, name):
     for item in dir_content:
         if os.path.isfile(d + item) and name in item.lower().replace("_", " "):
             item_size = hf.naturalsize(os.path.getsize(d + item))
-            files.append((d + item, item, item_size))
+            files.append(BetterFile({ "path": d + item, "name": item, "size": item_size }))
 
     return files + sum([search_filename(d + folder, name) for folder in folders], start=[])
