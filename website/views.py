@@ -108,8 +108,18 @@ def files(path):
 def search():
     if request.method == "POST":
         filename = str(request.form.get("filename"))
-        filename_low = filename.lower()
 
+        if filename == '':
+            # Invalid input (too cpu-intensive)
+            return render_template(
+                "search.html",
+                filename='',
+                title="Search error",
+                files=[],
+                emoji_selector=utils.emoji_selector
+            )
+
+        filename_low = filename.lower()
         files = utils.search_filename(str(BASE_DIR) + "storage/", filename_low)
 
         return render_template(
