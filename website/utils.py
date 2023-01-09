@@ -1,6 +1,9 @@
 import datetime
+import difflib
 import os
+from pathlib import Path
 from threading import Timer
+
 
 from humanize import filesize as hf
 
@@ -111,7 +114,8 @@ def search_filename(d: str, name: str) -> list[BetterFile]:
 
     files = []
     for item in dir_content:
-        if os.path.isfile(d + item) and name in item.lower().replace("_", " "):
+        item_name = Path(item).stem.lower().replace('_', ' ')
+        if os.path.isfile(d + item) and (name in item_name or difflib.SequenceMatcher(a=name, b=item_name).ratio() >= 0.80):
             item_size = hf.naturalsize(os.path.getsize(d + item))
             files.append(BetterFile({ "path": d + item, "name": item, "size": item_size }))
 
