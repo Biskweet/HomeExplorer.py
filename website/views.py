@@ -104,7 +104,7 @@ def files(path):
     )
 
 
-@app.route("/search/", methods=["POST"])
+@app.route("/search/", methods=["POST", "GET"])
 def search():
     if request.method == "POST":
         filename = str(request.form.get("filename"))
