@@ -41,7 +41,7 @@
                     {% for file in files %}
                         <tr>
                             <td>{{ emoji_selector(file.name) }}</td>
-                            <td class="file-item"><a href="./{{ file.path }}">{{ file.name }}</td>
+                            <td class="file-item"><a href="/files/{{ file.path }}">{{ file.name }}</td>
                             <td>&nbsp;&nbsp;{{ file.size }}</td>
                         </tr>
                     {% endfor %}

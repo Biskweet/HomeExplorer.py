@@ -117,6 +117,7 @@ def search_filename(d: str, name: str) -> list[BetterFile]:
         item_name = Path(item).stem.lower().replace('_', ' ')
         if os.path.isfile(d + item) and (name in item_name or difflib.SequenceMatcher(a=name, b=item_name).ratio() >= 0.80):
             item_size = hf.naturalsize(os.path.getsize(d + item))
-            files.append(BetterFile({ "path": d + item, "name": item, "size": item_size }))
+            item_path = os.path.join(d.replace(os.environ.get('BASE_DIR'), ''), item)
+            files.append(BetterFile({ "path": item_path, "name": item, "size": item_size }))
 
     return files + sum([search_filename(d + folder, name) for folder in folders], start=[])
