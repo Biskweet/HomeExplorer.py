@@ -25,7 +25,7 @@ BASE_DIR = os.environ.get("BASE_DIR")
 
 @app.route("/")
 def root():
-    return redirect(url_for("login"))
+    return ''
 
 
 @app.route("/unauthorized/")
@@ -141,6 +141,18 @@ def resetcookie():
             del sessions[i]
 
     return redirect(url_for("login"))
+
+@app.route("/mastercal/")
+def serve_calendar():
+    content = ''
+
+    try:
+        with open("/home/gaspard/mastercal.ics") as f:
+            content = f.read()
+    except:
+        ...
+
+    return content or ('', 500)
 
 
 @app.errorhandler(404)
